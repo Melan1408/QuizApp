@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-    CardMedia, 
     Grid,
     Typography,
     Button,
@@ -23,16 +22,6 @@ const styleBox = {
   p: 2,
 };
 
-const styleBtn = {
-    width: '100%',
-    marginTop: 1
-}
-
-const styleModal = {
-    overflow: 'scroll'
-}
-
-
 const BasicModal = ({ open, handleClickClose, quiz, timeForQuiz }) => {
   return (
     <div>
@@ -48,40 +37,37 @@ const BasicModal = ({ open, handleClickClose, quiz, timeForQuiz }) => {
             timeout: 500,
           },
         }}
-        sx={styleModal}
+        sx={{ overflow: 'scroll' }}
       >
         <Fade in={open}>
           <Box sx={styleBox}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
-                <CardMedia
-                  component="img"
-                  alt="quiz name"
-                  height="140"
-                  image={quiz.image}
+                <img
+                  src={quiz.image}
+                  alt={quiz.name}
+                  width="100%"
                 />
               </Grid>
-              <Grid item xs={12} md={6} container>
-                <Grid item xs container direction="column" spacing={2}>
-                  <Grid item xs>
-                    <Typography gutterBottom variant="subtitle1" component="div">
+              <Grid container item xs={12} md={6} direction="column" justifyContent="space-between" >
+                <Grid item>                  
+                    <Typography  variant="subtitle1" marginBottom="5px">
                       {quiz.name}
                     </Typography>
-                    <Typography variant="body2" gutterBottom>
+                    <Typography variant="body2" marginBottom="5px">
                       {quiz.description}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       Time estimate for this quiz is {timeForQuiz}
                     </Typography>
-                  </Grid>
                 </Grid>
-                <Grid item xs={12} container>
+                <Grid item>
                   <Button
                     variant="contained"
                     color="success"
                     size="small"
                     onClick={handleClickClose}
-                    sx={styleBtn}
+                    sx={{ width: '100%', marginTop: 1}}
                   >
                     Close Modal
                   </Button>
