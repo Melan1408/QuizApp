@@ -16,7 +16,7 @@ const Quiz = () => {
     }, []); 
 
     return (
-        <Container sx={{ p: 1 }}>
+        <Container sx={{ p: 8 }}>
             <Grid container spacing={{ xs: 2, md: 3 }}>
                 {quizes.map((quiz, index) => (
                     <QuizCard

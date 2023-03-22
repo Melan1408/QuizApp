@@ -11,7 +11,7 @@ const Navbar = ({links}) => {
   const [tabNumber, setTabNumber] = useState(0);
 
     return (
-      <AppBar>
+      <AppBar position='relative'>
         <Toolbar>
           {isMatch ? <>
             <Typography>
