@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import { Box, Container, Grid, Typography, styled } from "@mui/material";
 
 const FooterContainer = styled(Box)(() => ({
@@ -10,9 +10,14 @@ const FooterContainer = styled(Box)(() => ({
   marginTop: "auto",
 }));
 
+export default class Footer extends Component{
 
-const Footer = () => {
-    return (
+  constructor() {
+    super();
+  }
+
+  render() {
+    return(
       <FooterContainer>
         <Container maxWidth="lg">
           <Grid container direction="row" justifyContent="space-between">
@@ -30,6 +35,5 @@ const Footer = () => {
         </Container>
       </FooterContainer>
     );
+  }
 }
-
-export default Footer;

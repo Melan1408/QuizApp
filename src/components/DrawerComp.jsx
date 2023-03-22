@@ -1,31 +1,43 @@
 import { Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import React, { useState } from "react";
+import { Component } from 'react';
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 
-const DrawerComp = ({links}) => {
+export default class DrawerComp extends Component {
 
-    const [open, setOpen] = useState(false);
+    state = {
+        open: false
+    }
 
-    return (
-        <>
-            <Drawer PaperProps={{
-                sx: { backgroundColor: "#709bf0" }
-            }} open={open} onClose={() => setOpen(false)}>
-                <List>
-                    {links.map((link, index) => (
-                        <ListItemButton onClick={() => setOpen(false)} key={index} divider>
-                            <ListItemIcon>
-                                <ListItemText sx={{ color: "white" }}>{link}</ListItemText>
-                            </ListItemIcon>
-                        </ListItemButton>
-                    ))}
-                </List>
-            </Drawer>
-            <IconButton sx={{ color: "white", marginLeft: "auto" }} onClick={() => setOpen(!open)}>
-                <MenuRoundedIcon />
-            </IconButton>
-        </>
-    );
+    constructor() {
+        super();
+        this.handleToggleOpen = this.handleToggleOpen.bind(this);
+    }
+
+    render() {
+        const { links } = this.props;
+        return (
+            <>
+                <Drawer PaperProps={{
+                    sx: { backgroundColor: "#709bf0" }
+                }} open={this.state.open} onClose={() => this.setState({ open: false })}>
+                    <List>
+                        {links.map((link, index) => (
+                            <ListItemButton onClick={() => this.setState({ open: false })} key={index} divider>
+                                <ListItemIcon>
+                                    <ListItemText sx={{ color: "white" }}>{link}</ListItemText>
+                                </ListItemIcon>
+                            </ListItemButton>
+                        ))}
+                    </List>
+                </Drawer>
+                <IconButton sx={{ color: "white", marginLeft: "auto" }} onClick={this.handleToggleOpen}>
+                    <MenuRoundedIcon />
+                </IconButton>
+            </>
+        );
+    }
+
+    handleToggleOpen() {
+        this.setState({ open: !this.state.open });
+    }
 }
-
-export default DrawerComp;

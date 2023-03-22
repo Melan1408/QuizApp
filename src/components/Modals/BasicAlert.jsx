@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import {
     Box,
     Alert,
@@ -7,9 +7,16 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-const BasicAlert = ({ open, handleClickClose, text }) => {
-  return (
-    <Box sx={{ width: '100%' }}>
+export default class BasicAlert extends Component{
+
+  constructor() {
+    super();
+  }
+
+  render() {
+    const { open, handleClickClose, text } = this.props;
+    return(
+      <Box sx={{ width: '100%' }}>
       <Collapse in={open}>
         <Alert
           action={
@@ -28,8 +35,6 @@ const BasicAlert = ({ open, handleClickClose, text }) => {
         </Alert>
       </Collapse>
     </Box>
-  );
+    );
+  }
 }
-
-export default BasicAlert;
- 

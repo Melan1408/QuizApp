@@ -1,12 +1,12 @@
-import React from 'react';
-import { 
-    Grid,
-    Typography,
-    Button,
-    Fade,
-    Modal,
-    Box,
-    Backdrop
+import { Component } from 'react';
+import {
+  Grid,
+  Typography,
+  Button,
+  Fade,
+  Modal,
+  Box,
+  Backdrop
 } from '@mui/material';
 
 const styleBox = {
@@ -22,36 +22,43 @@ const styleBox = {
   p: 2,
 };
 
-const BasicModal = ({ open, handleClickClose, quiz, timeForQuiz }) => {
-  return (
-    <div>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClickClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-        sx={{ overflow: 'scroll' }}
-      >
-        <Fade in={open}>
-          <Box sx={styleBox}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
-                <img
-                  src={quiz.image}
-                  alt={quiz.name}
-                  width="100%"
-                />
-              </Grid>
-              <Grid container item xs={12} md={6} direction="column" justifyContent="space-between" >
-                <Grid item>                  
-                    <Typography  variant="subtitle1" marginBottom="5px">
+export default class BasicModal extends Component {
+
+  constructor() {
+    super();
+  }
+
+  render() {
+    const { open, handleClickClose, quiz, timeForQuiz } = this.props;
+    return (
+      <div>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={handleClickClose}
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+          slotProps={{
+            backdrop: {
+              timeout: 500,
+            },
+          }}
+          sx={{ overflow: 'scroll' }}
+        >
+          <Fade in={open}>
+            <Box sx={styleBox}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                  <img
+                    src={quiz.image}
+                    alt={quiz.name}
+                    width="100%"
+                  />
+                </Grid>
+                <Grid container item xs={12} md={6} direction="column" justifyContent="space-between" >
+                  <Grid item>
+                    <Typography variant="subtitle1" marginBottom="5px">
                       {quiz.name}
                     </Typography>
                     <Typography variant="body2" marginBottom="5px">
@@ -60,25 +67,24 @@ const BasicModal = ({ open, handleClickClose, quiz, timeForQuiz }) => {
                     <Typography variant="body2" color="text.secondary">
                       Time estimate for this quiz is {timeForQuiz}
                     </Typography>
-                </Grid>
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    color="success"
-                    size="small"
-                    onClick={handleClickClose}
-                    sx={{ width: '100%', marginTop: 1}}
-                  >
-                    Close Modal
-                  </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      size="small"
+                      onClick={handleClickClose}
+                      sx={{ width: '100%', marginTop: 1 }}
+                    >
+                      Close Modal
+                    </Button>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          </Box>
-        </Fade>
-      </Modal>
-    </div>
-  );
+            </Box>
+          </Fade>
+        </Modal>
+      </div>
+    );
+  }
 }
-
-export default BasicModal;
