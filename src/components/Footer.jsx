@@ -1,17 +1,19 @@
 import React from 'react';
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography, styled } from "@mui/material";
+
+const FooterContainer = styled(Box)(() => ({
+  width: "100%",
+  height: "auto",
+  backgroundColor: "#42a5f5",
+  paddingTop: "1rem",
+  paddingBottom: "1rem",
+  marginTop: "auto",
+}));
+
 
 const Footer = () => {
     return (
-      <Box
-        sx={{
-          width: "100%",
-          height: "auto",
-          backgroundColor: "primary.main",
-          paddingTop: "1rem",
-          paddingBottom: "1rem",
-        }}
-      >
+      <FooterContainer>
         <Container maxWidth="lg">
           <Grid container direction="row" justifyContent="space-between">
             <Grid >
@@ -26,7 +28,7 @@ const Footer = () => {
             </Grid>
           </Grid>
         </Container>
-      </Box>
+      </FooterContainer>
     );
 }
 

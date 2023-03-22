@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import { Container } from '@mui/system';
 import axios from 'axios';
-import QuizItem from './QuizItem';
+import QuizCard from './QuizCard';
 
-const QuizPage = () => {
+const Quiz = () => {
 
     let [quizes, setQuizes] = useState([]);
 
@@ -16,10 +16,10 @@ const QuizPage = () => {
     }, []); 
 
     return (
-        <Container sx={{ p: 1 }}>
+        <Container sx={{ p: 8 }}>
             <Grid container spacing={{ xs: 2, md: 3 }}>
                 {quizes.map((quiz, index) => (
-                    <QuizItem
+                    <QuizCard
                         key={index}
                         quiz={quiz}
                     />))}
@@ -28,4 +28,4 @@ const QuizPage = () => {
     );
 }
 
-export default QuizPage;
+export default Quiz;

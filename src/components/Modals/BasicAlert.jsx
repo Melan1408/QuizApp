@@ -5,7 +5,6 @@ import {
     IconButton,
     Collapse,
 } from '@mui/material';
-
 import CloseIcon from '@mui/icons-material/Close';
 
 const BasicAlert = ({ open, handleClickClose, text }) => {
@@ -33,3 +32,4 @@ const BasicAlert = ({ open, handleClickClose, text }) => {
 }
 
 export default BasicAlert;
+ 

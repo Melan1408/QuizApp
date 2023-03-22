@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import BasicAlert from '../components/BasicAlert';
-import BasicModal from '../components/BasicModal';
+import BasicAlert from '../components/Modals/BasicAlert';
+import BasicModal from '../components/Modals/BasicModal';
 import { 
     Card, 
     CardActions, 
@@ -11,7 +11,7 @@ import {
     Grid 
 } from "@mui/material";
 
-const QuizItem = ({ quiz }) => {
+const QuizCard = ({ quiz }) => {
 
     const func = {
         'alertOpen': () =>  setAlertOpen(true),
@@ -53,4 +53,4 @@ const QuizItem = ({ quiz }) => {
     );
 }
 
-export default QuizItem;
+export default QuizCard;

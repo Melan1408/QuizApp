@@ -1,13 +1,15 @@
 import './App.css';
 import Footer from './components/Footer';
-import Header from './components/Header';
-import QuizPage from './pages/QuizPage';
+import Navbar from './components/Navbar';
+import Quiz from './pages/Quiz';
+
+const linksArray = ["Menu1", "Menu2", "Menu3", "Menu4"];
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <QuizPage />
+      <Navbar links={linksArray}/>
+      <Quiz />
       <Footer />
     </div>
   );
