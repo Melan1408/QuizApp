@@ -1,25 +1,24 @@
 import React from 'react';
 import {
-    Box,
-    Alert,
-    IconButton,
-    Collapse,
+  Box,
+  Alert,
+  IconButton,
+  Collapse,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-const BasicAlert = ({ open, handleClickClose, text }) => {
-  return (
+const BasicAlert = ({ open, handleClickClose, text }) => (
     <Box sx={{ width: '100%' }}>
       <Collapse in={open}>
         <Alert
           action={
             <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
+              aria-label='close'
+              color='inherit'
+              size='small'
               onClick={handleClickClose}
             >
-              <CloseIcon fontSize="inherit" />
+              <CloseIcon fontSize='inherit' />
             </IconButton>
           }
           sx={{ mb: 2 }}
@@ -28,8 +27,6 @@ const BasicAlert = ({ open, handleClickClose, text }) => {
         </Alert>
       </Collapse>
     </Box>
-  );
-}
+);
 
 export default BasicAlert;
- 

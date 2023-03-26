@@ -1,12 +1,12 @@
 import React from 'react';
-import { 
-    Grid,
-    Typography,
-    Button,
-    Fade,
-    Modal,
-    Box,
-    Backdrop
+import {
+  Grid,
+  Typography,
+  Button,
+  Fade,
+  Modal,
+  Box,
+  Backdrop,
 } from '@mui/material';
 
 const styleBox = {
@@ -22,12 +22,11 @@ const styleBox = {
   p: 2,
 };
 
-const BasicModal = ({ open, handleClickClose, quiz, timeForQuiz }) => {
-  return (
+const BasicModal = ({ open, handleClickClose, quiz, timeForQuiz }) => (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby='transition-modal-title'
+        aria-describedby='transition-modal-description'
         open={open}
         onClose={handleClickClose}
         closeAfterTransition
@@ -46,28 +45,28 @@ const BasicModal = ({ open, handleClickClose, quiz, timeForQuiz }) => {
                 <img
                   src={quiz.image}
                   alt={quiz.name}
-                  width="100%"
+                  width='100%'
                 />
               </Grid>
-              <Grid container item xs={12} md={6} direction="column" justifyContent="space-between" >
-                <Grid item>                  
-                    <Typography  variant="subtitle1" marginBottom="5px">
+              <Grid container item xs={12} md={6} direction='column' justifyContent='space-between' >
+                <Grid item>
+                    <Typography variant='subtitle1' marginBottom='5px'>
                       {quiz.name}
                     </Typography>
-                    <Typography variant="body2" marginBottom="5px">
+                    <Typography variant='body2' marginBottom='5px'>
                       {quiz.description}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant='body2' color='text.secondary'>
                       Time estimate for this quiz is {timeForQuiz}
                     </Typography>
                 </Grid>
                 <Grid item>
                   <Button
-                    variant="contained"
-                    color="success"
-                    size="small"
+                    variant='contained'
+                    color='success'
+                    size='small'
                     onClick={handleClickClose}
-                    sx={{ width: '100%', marginTop: 1}}
+                    sx={{ width: '100%', marginTop: 1 }}
                   >
                     Close Modal
                   </Button>
@@ -78,7 +77,6 @@ const BasicModal = ({ open, handleClickClose, quiz, timeForQuiz }) => {
         </Fade>
       </Modal>
     </div>
-  );
-}
+);
 
 export default BasicModal;
