@@ -10,7 +10,7 @@ import {
 const FooterContainer = styled(Box)(() => ({
   width: '100%',
   height: 'auto',
-  backgroundColor: '#42a5f5',
+  backgroundColor: 'white',
   paddingTop: '1rem',
   paddingBottom: '1rem',
   marginTop: 'auto',
@@ -21,12 +21,12 @@ const Footer = () => (
       <Container maxWidth='lg'>
         <Grid container direction='row' justifyContent='space-between'>
           <Grid >
-            <Typography color='white' variant='subtitle1'>
+            <Typography color='#696F79' variant='subtitle1'>
               QUIZ App
             </Typography>
           </Grid>
           <Grid >
-            <Typography color='white' variant='subtitle1'>
+            <Typography color='#696F79' variant='subtitle1'>
               Copyright ©2022. [] Limited
             </Typography>
           </Grid>

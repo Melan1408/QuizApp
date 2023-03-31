@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Container } from '@mui/material';
-import axios from 'axios';
-import QuizCard from './QuizCard';
+import { Grid, Container, Box } from '@mui/material';
+import { quizes } from '../api/api';
+import QuizCard from '../components/QuizCard';
 
 const Quiz = () => {
-  const [quizes, setQuizes] = useState([]);
+  const [quizesData, setQuizes] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get('https://6410b130ff89c2e2d4e668e4.mockapi.io/quizes');
+      const { data } = await quizes.fetch();
       setQuizes(data);
     })();
   }, []);
 
   return (
+    <>
+    <Box>
     <Container sx={{ p: 8 }}>
       <Grid container spacing={{ xs: 2, md: 3 }}>
-        {quizes.map((quiz, index) => (
+        {quizesData.map((quiz, index) => (
           <QuizCard
             key={index}
             quiz={quiz}
           />))}
       </Grid>
     </Container >
+    </Box>
+    </>
   );
 };
 

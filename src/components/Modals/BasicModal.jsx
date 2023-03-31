@@ -22,7 +22,9 @@ const styleBox = {
   p: 2,
 };
 
-const BasicModal = ({ open, handleClickClose, quiz, timeForQuiz }) => (
+const BasicModal = ({
+  open, handleClickClose, quiz,
+}) => (
     <div>
       <Modal
         aria-labelledby='transition-modal-title'
@@ -55,9 +57,6 @@ const BasicModal = ({ open, handleClickClose, quiz, timeForQuiz }) => (
                     </Typography>
                     <Typography variant='body2' marginBottom='5px'>
                       {quiz.description}
-                    </Typography>
-                    <Typography variant='body2' color='text.secondary'>
-                      Time estimate for this quiz is {timeForQuiz}
                     </Typography>
                 </Grid>
                 <Grid item>
