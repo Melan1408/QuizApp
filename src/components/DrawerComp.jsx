@@ -26,20 +26,20 @@ const DrawerComp = ({ links }) => {
               fontWeight: '600',
             }}>
               <ListItemIcon>
-                  <Link
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                    to={(link.split(' ').join('_').toLowerCase() === 'home')
-                      ? '/'
-                      : link.split(' ').join('_').toLowerCase()}>
-                    {link}
-                  </Link>
+                <Link
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  to={(link.split(' ').join('_').toLowerCase() === 'home')
+                    ? '/'
+                    : link.split(' ').join('_').toLowerCase()}>
+                  {link}
+                </Link>
               </ListItemIcon>
             </ListItemButton>
           ))}
         </List>
       </Drawer>
       <IconButton sx={{ color: '#696F79', marginLeft: 'auto' }} onClick={() => setOpen(!open)}>
-        <MenuRoundedIcon/>
+        <MenuRoundedIcon />
       </IconButton>
     </>
   );

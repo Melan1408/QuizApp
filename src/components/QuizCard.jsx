@@ -4,12 +4,12 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Button,
   Typography,
   Grid,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import BasicModal from './Modals/BasicModal';
+import BasicButton from './styled/BasicButton';
 
 const QuizCard = ({ quiz }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -38,33 +38,17 @@ const QuizCard = ({ quiz }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button variant='h6' sx={{
-            p: '7px 15px',
-            color: '#696F79',
-            background: 'white',
-            borderRadius: '12px',
-            fontFamily: 'Poppins',
-            fontWeight: '600',
-            border: '2px solid #696F79',
-            ':hover': { color: 'white', background: '#696F79' },
+          <BasicButton variant='h6' component={Link} to={`/${quiz.name.toLowerCase()}`} sx={{
+            mr: '10px',
+            p: '7px 10px',
           }}>
-            <Link
-            style={{ textDecoration: 'none', color: 'inherit' }}
-            to={`/${quiz.name.toLowerCase()}`}
-            >
-             Go to Quiz
-            </Link>
-          </Button>
-          <Button variant='h6' size='small' onClick={handleClick('modalOpen')} sx={{
-            p: '7px 15px',
-            color: '#696F79',
-            background: 'white',
-            borderRadius: '12px',
-            fontFamily: 'Poppins',
-            fontWeight: '600',
-            border: '2px solid #696F79',
-            ':hover': { color: 'white', background: '#696F79' },
-          }}>Show More</Button>
+            Go to Quiz
+          </BasicButton>
+          <BasicButton variant='h6' size='small' onClick={handleClick('modalOpen')} sx={{
+            p: '7px 10px',
+          }}>
+            Show More
+          </BasicButton>
         </CardActions>
         <BasicModal open={modalOpen} handleClickClose={handleClick('modalClose')} quiz={quiz} />
       </Card>

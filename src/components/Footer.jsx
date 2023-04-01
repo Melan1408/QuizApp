@@ -17,22 +17,22 @@ const FooterContainer = styled(Box)(() => ({
 }));
 
 const Footer = () => (
-    <FooterContainer>
-      <Container maxWidth='lg'>
-        <Grid container direction='row' justifyContent='space-between'>
-          <Grid >
-            <Typography color='#696F79' variant='subtitle1'>
-              QUIZ App
-            </Typography>
-          </Grid>
-          <Grid >
-            <Typography color='#696F79' variant='subtitle1'>
-              Copyright ©2022. [] Limited
-            </Typography>
-          </Grid>
+  <FooterContainer>
+    <Container maxWidth='lg'>
+      <Grid container direction='row' justifyContent='space-between'>
+        <Grid >
+          <Typography color='#696F79' variant='subtitle1'>
+            QUIZ App
+          </Typography>
         </Grid>
-      </Container>
-    </FooterContainer>
+        <Grid >
+          <Typography color='#696F79' variant='subtitle1'>
+            Copyright ©2022. [] Limited
+          </Typography>
+        </Grid>
+      </Grid>
+    </Container>
+  </FooterContainer>
 );
 
 export default Footer;

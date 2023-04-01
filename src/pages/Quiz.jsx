@@ -15,17 +15,17 @@ const Quiz = () => {
 
   return (
     <>
-    <Box>
-    <Container sx={{ p: 8 }}>
-      <Grid container spacing={{ xs: 2, md: 3 }}>
-        {quizesData.map((quiz, index) => (
-          <QuizCard
-            key={index}
-            quiz={quiz}
-          />))}
-      </Grid>
-    </Container >
-    </Box>
+      <Box>
+        <Container sx={{ p: '30px 24px' }}>
+          <Grid container spacing={{ xs: 2, md: 3 }}>
+            {quizesData.map((quiz, index) => (
+              <QuizCard
+                key={index}
+                quiz={quiz}
+              />))}
+          </Grid>
+        </Container >
+      </Box>
     </>
   );
 };
