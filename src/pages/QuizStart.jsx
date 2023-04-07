@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
   Container,
@@ -7,7 +8,7 @@ import {
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import Countdown from 'react-countdown';
-import { quiz } from '../api/api';
+import { quizThunks } from '../store/modules/quiz';
 import QuestionCard from '../components/QuestionCard';
 import Result from '../components/QuizResult';
 import BasicText from '../components/styled/BasicText';
@@ -16,8 +17,8 @@ import BasicButton from '../components/styled/BasicButton';
 const QuizStart = () => {
   const { name } = useParams();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [quizData, setQuiz] = useState([]);
+  const { quiz } = useSelector((state) => state.quizReducer);
+  const dispatch = useDispatch();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
@@ -30,20 +31,14 @@ const QuizStart = () => {
 
   useEffect(() => {
     (async () => {
-      try {
-        const { data } = await quiz.fetch(name);
-        setQuiz(data[0]);
-      } catch (err) {
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
+      await dispatch(quizThunks.fetchQuiz(name));
+      setLoading(false);
     })();
   }, []);
 
   if (startQuiz) {
-    finishedQuiz = currentQuestionIndex === quizData.questions.length;
-    currentQuestion = quizData.questions[currentQuestionIndex];
+    finishedQuiz = currentQuestionIndex === quiz.questions.length;
+    currentQuestion = quiz.questions[currentQuestionIndex];
   }
 
   const goToNext = () => {
@@ -82,7 +77,7 @@ const QuizStart = () => {
   };
 
   if (loading) return (<>Loading...</>);
-  if (error) return (<Typography variant='h2'>Page {name} in progress!</Typography>);
+  if (Object.keys(quiz).length === 0) return (<Typography variant='h2'>Page {name} in progress!</Typography>);
   return (
     <Box>
       <Container maxWidth="lg" sx={{ p: '30px 0' }}>
@@ -93,7 +88,7 @@ const QuizStart = () => {
           mb: '15px',
         }}>
           <BasicText variant='h4' sx={{ fontWeight: '700' }}>
-            {quizData.name} Quiz
+            {quiz.name} Quiz
           </BasicText>
           <BasicText variant='h5' sx={{
             mb: '10px',
@@ -103,8 +98,8 @@ const QuizStart = () => {
           <Grid container paddingBottom="10px" spacing={2}>
             <Grid item xs={12} md={6}>
               <img
-                src={quizData.image}
-                alt={quizData.name}
+                src={quiz.image}
+                alt={quiz.name}
                 width='100%'
                 style={{ borderRadius: '12px' }}
               />
@@ -114,13 +109,13 @@ const QuizStart = () => {
                 <strong>Date:</strong>&emsp;{date}
               </BasicText>
               <BasicText variant='h5'>
-                <strong>Time limit:</strong>&emsp;{quizData.time} Mins
+                <strong>Time limit:</strong>&emsp;{quiz.time} Mins
               </BasicText>
               <BasicText variant='h5'>
-                <strong>Attempts:</strong>&emsp;{quizData.attempts}
+                <strong>Attempts:</strong>&emsp;{quiz.attempts}
               </BasicText>
               <BasicText variant='h5'>
-                <strong>Points:</strong>&emsp;{quizData.points}
+                <strong>Points:</strong>&emsp;{quiz.points}
               </BasicText>
             </Grid>
           </Grid>
@@ -128,10 +123,10 @@ const QuizStart = () => {
             Instructions
           </BasicText>
           <BasicText variant='h5' sx={{ mb: '10px' }}>
-            {quizData.discription}
+            {quiz.discription}
           </BasicText>
           <Countdown
-            date={Date.now() + quizData.time * (60000 / quizData.questions.length)}
+            date={Date.now() + quiz.time * (60000 / quiz.questions.length)}
             renderer={renderer}
             autoStart={false}
             ref={clockRef}
@@ -155,7 +150,7 @@ const QuizStart = () => {
               ? <Result
                 restartQuiz={restartQuiz}
                 answers={answers}
-                questions={quizData.questions} />
+                questions={quiz.questions} />
               : <QuestionCard
                 question={currentQuestion}
                 questionNumber={currentQuestionIndex + 1}

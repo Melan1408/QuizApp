@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   AppBar,
   Button,
@@ -11,18 +11,27 @@ import {
 } from '@mui/material';
 import { SearchOutlined } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import DrawerComp from './DrawerComp';
 import BasicText from './styled/BasicText';
+import { quizesActions } from '../store/modules/quizes';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down('md'));
   const links = ['Home', 'Add New', 'Favorite'];
   const { pathname } = useLocation();
+  const [searchValue, setSearchValue] = useState('');
 
   const handleChangeSearch = (event) => {
-    console.log(event.target.value);
+    setSearchValue(event.target.value);
+    dispatch(quizesActions.filterQuizes(event.target.value));
   };
+
+  useEffect(() => {
+    setSearchValue('');
+  }, [pathname]);
 
   return (
     <AppBar position='relative'>
@@ -65,6 +74,7 @@ const Navbar = () => {
                 id="standard-bare"
                 variant="outlined"
                 label="Search Quiz"
+                value={searchValue}
                 onChange={handleChangeSearch}
                 InputProps={{
                   endAdornment: (
