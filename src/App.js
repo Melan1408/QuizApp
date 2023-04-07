@@ -1,16 +1,19 @@
 import React from 'react';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
-import Navbar from './components/Navbar';
 import Quiz from './pages/Quiz';
-
-const linksArray = ['Menu1', 'Menu2', 'Menu3', 'Menu4'];
+import QuizRoute from './components/QuizRoute';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className='App'>
-      <Navbar links={ linksArray }/>
-      <Quiz />
+    <div className='App' style={{ backgroundColor: '#E5E5E5' }}>
+      <Navbar />
+      <Routes>
+        <Route index element={<Quiz />} path='/' />
+        <Route path='/*' element={<QuizRoute />} />
+      </Routes>
       <Footer />
     </div>
   );

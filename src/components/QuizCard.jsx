@@ -4,19 +4,16 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Button,
   Typography,
   Grid,
 } from '@mui/material';
-import BasicAlert from '../components/Modals/BasicAlert';
-import BasicModal from '../components/Modals/BasicModal';
+import { Link } from 'react-router-dom';
+import BasicModal from './Modals/BasicModal';
+import BasicButton from './styled/BasicButton';
 
 const QuizCard = ({ quiz }) => {
-  const [alertOpen, setAlertOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const func = {
-    alertOpen: () => setAlertOpen(true),
-    alertClose: () => setAlertOpen(false),
     modalOpen: () => setModalOpen(true),
     modalClose: () => setModalOpen(false),
   };
@@ -41,11 +38,19 @@ const QuizCard = ({ quiz }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size='small' onClick={handleClick('alertOpen')}>Start quiz</Button>
-          <Button size='small' onClick={handleClick('modalOpen')}>Show More</Button>
+          <BasicButton variant='h6' component={Link} to={`/${quiz.name.toLowerCase()}`} sx={{
+            mr: '10px',
+            p: '7px 10px',
+          }}>
+            Go to Quiz
+          </BasicButton>
+          <BasicButton variant='h6' size='small' onClick={handleClick('modalOpen')} sx={{
+            p: '7px 10px',
+          }}>
+            Show More
+          </BasicButton>
         </CardActions>
-        <BasicAlert open={alertOpen} handleClickClose={handleClick('alertClose')} text={'Quiz is start!'} />
-        <BasicModal open={modalOpen} handleClickClose={handleClick('modalClose')} quiz={quiz} timeForQuiz={'5min'} />
+        <BasicModal open={modalOpen} handleClickClose={handleClick('modalClose')} quiz={quiz} />
       </Card>
     </Grid>
   );
